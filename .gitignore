@@ -27,3 +27,4 @@
 .vs/*
 bin/*
 obj/*
+build/*
