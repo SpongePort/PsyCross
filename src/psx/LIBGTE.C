@@ -17,6 +17,20 @@
 #define ONE					(1 << 12)
 #define	FIXED(a)			((a) >> 12)
 
+int fst_min(int a, int b)
+{
+	int diff = a - b;
+	int dsgn = diff >> 31;
+	return b + (diff & dsgn);
+}
+
+int fst_max(int a, int b)
+{
+	int diff = a - b;
+	int dsgn = diff >> 31;
+	return a - (diff & dsgn);
+}
+
 #ifndef MIN
 #define MIN(a,b)	fst_min(a,b)
 #endif
@@ -24,20 +38,6 @@
 #ifndef MAX
 #define MAX(a,b)	fst_max(a,b)
 #endif
-
-inline int fst_min(int a, int b)
-{
-	int diff = a - b;
-	int dsgn = diff >> 31;
-	return b + (diff & dsgn);
-}
-
-inline int fst_max(int a, int b)
-{
-	int diff = a - b;
-	int dsgn = diff >> 31;
-	return a - (diff & dsgn);
-}
 
 void InitGeom()
 {
@@ -305,10 +305,10 @@ MATRIX* MulMatrix0(MATRIX* m0, MATRIX* m1, MATRIX* m2)
 	m2->m[2][2] = r2.vz;
 
 #else
-	/* ‚±‚ê‚Å‚àm0==m2‚Ìƒ„ƒoƒC */
+	/* ï¿½ï¿½ï¿½ï¿½Å‚ï¿½m0==m2ï¿½Ìï¿½ï¿½ï¿½ï¿½oï¿½C */
 	int vx, vy, vz;
 	MATRIX tmp;
-	/* ‚Ì‚Åm0‚ğtmp‚ÉƒRƒs[ */
+	/* ï¿½Ì‚ï¿½m0ï¿½ï¿½tmpï¿½ÉƒRï¿½sï¿½[ */
 	if (m0 == m2) {
 		tmp = *m0; m0 = &tmp;
 	}
