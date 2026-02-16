@@ -280,6 +280,9 @@ int GR_InitialiseGLContext(char* windowName, int fullscreen)
 		windowFlags |= SDL_WINDOW_FULLSCREEN;
 #endif
 
+	if(g_windowWidth <= 0 || g_windowHeight <= 0)
+		windowFlags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+
 	g_window = SDL_CreateWindow(windowName, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, g_windowWidth, g_windowHeight, windowFlags);
 
 	if (g_window == NULL)

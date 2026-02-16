@@ -334,7 +334,7 @@ u_int PsyX_SPUAL_Write(u_char* addr, u_int size)
 
 	if (wptr_ofs + size > SPU_REALMEMSIZE)
 	{
-		eprintf("SPU WARNING: SpuWrite exceeded SPU_REALMEMSIZE (%d > 512k)!\n", wptr_ofs + size);
+		eprintf("SPU WARNING: SpuWrite exceeded SPU_REALMEMSIZE by %d bytes!\n", wptr_ofs + size - SPU_REALMEMSIZE);
 	}
 	assert(size > 0 && wptr_ofs + size < SPU_MEMSIZE);
 
@@ -385,7 +385,7 @@ u_int PsyX_SPUAL_Read(u_char* addr, u_int size)
 
 	if (rptr_ofs + size > SPU_REALMEMSIZE)
 	{
-		eprintf("SPU WARNING: SpuRead exceeded SPU_REALMEMSIZE (%d > 512k)!\n", rptr_ofs + size);
+		eprintf("SPU WARNING: SpuRead exceeded SPU_REALMEMSIZE by %d bytes!\n", rptr_ofs + size - SPU_REALMEMSIZE);
 	}
 	assert(size > 0 && rptr_ofs + size < SPU_MEMSIZE);
 
